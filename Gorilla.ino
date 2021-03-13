@@ -23,6 +23,7 @@ boolean positive = false;
 long next = 0;
 
 void setup() {
+    pinMode(6, OUTPUT);
     pinMode(8, INPUT);
     pinMode(9, INPUT);
     pinMode(10, INPUT);
@@ -52,12 +53,14 @@ void loop() {
         lcd.clear();
         lcd.print("Spin in " + String(next) + " sec");
         for (int i = 0; i < next; i++) {
-            delay(1000); 
+            delay(1000);
         }
+        digitalWrite(6, HIGH);
         servo.write(180);
         for (int i = 0; i < 3; i++) {
             delay(1000); 
         }
+        digitalWrite(6, LOW);
         servo.write(0);
         positive = false;
     } else {
